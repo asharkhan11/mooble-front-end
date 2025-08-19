@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:jwt_decoder/jwt_decoder.dart'; 
+import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:mooble_front_end/components/CustomTextFieldWidget.dart';
 import '../services/auth_http_client.dart';
 import '../screens/admin/admin_dashboard.dart';
 import '../screens/superUser/superuser_dashboard.dart';
 import '../screens/teacher/teacher_dashboard.dart';
 import '../screens/student/student_dashboard.dart';
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -82,10 +82,7 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     if (!mounted) return;
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (_) => page),
-    );
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => page));
   }
 
   void _showError(String msg) {
@@ -95,27 +92,50 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Login")),
+      backgroundColor: Colors.white,
+     // appBar: AppBar(title: const Text("Login")),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            TextField(
-              controller: _usernameController,
-              decoration: const InputDecoration(labelText: "Username"),
+          SizedBox(height: 40),
+            Image.asset(
+              'assets/images/login_image.jpg',
+              scale: 1.5,
+              
             ),
-            TextField(
-              controller: _passwordController,
-              decoration: const InputDecoration(labelText: "Password"),
+            const SizedBox(height: 20),
+            Customtextfieldwidget(
+              textEiditingController: _usernameController,
+              labelText: "UserName",
+              prefixIcon: const Icon(Icons.person),
+            ),
+            SizedBox(height: 10),
+            Customtextfieldwidget(
+              textEiditingController: _usernameController,
+              labelText: "Password",
+              prefixIcon: const Icon(Icons.lock),
               obscureText: true,
             ),
             const SizedBox(height: 20),
             _isLoading
                 ? const CircularProgressIndicator()
-                : ElevatedButton(
-                    onPressed: _login,
-                    child: const Text("Login"),
+                : Container(
+                  height: 50,
+                  width: 380,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color.fromARGB(31, 194, 194, 194),
                   ),
+                  child: ElevatedButton(onPressed: _login,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 203, 211, 212),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: const Text("Login")),
+                ),
           ],
         ),
       ),

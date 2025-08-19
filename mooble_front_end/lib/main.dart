@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'LMS App',
-      themeMode: ThemeMode.system, // Light/Dark mode support
+      themeMode: ThemeMode.light, // Light/Dark mode support
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       home: const RoleBasedRouter(),
