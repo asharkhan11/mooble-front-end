@@ -112,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 10),
             Customtextfieldwidget(
-              textEiditingController: _usernameController,
+              textEiditingController: _passwordController,
               labelText: "Password",
               prefixIcon: const Icon(Icons.lock),
               obscureText: true,
